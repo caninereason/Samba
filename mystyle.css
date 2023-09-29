@@ -29,23 +29,33 @@
 
 /* Custom visualizer style */
 #section3 midi-visualizer .piano-roll-visualizer {
-  background: #ffd;
-  border: 2px solid black;
-  border-top: none;
-  border-radius: 0 0 10px 10px;
-  margin: 4px;
-  margin-top: 0;
-  overflow: auto;
-}
+    background: repeating-linear-gradient(
+      90deg,
+      #ffd 0,
+      #ffd 58px,
+      #000 59px,
+      #000 60px
+    );
+    background-size: 100% 50px; /* Set the height of each line */
+    border: 2px solid black;
+    border-top: none;
+    border-radius: 0 0 10px 10px;
+    margin: 4px;
+    margin-top: 0;
+    overflow: visible;
+  }
+  
+  
+
 #section3 midi-visualizer svg rect.note {
-  opacity: 0.6;
-  stroke-width: 2;
+  
+  stroke-width: 1;
 }
 #section3 midi-visualizer svg rect.note[data-instrument="0"]{
   fill: #e22;
   stroke: #500;
 }
-#section3 midi-visualizer svg rect.note[data-instrument="2"]{
+#section3 midi-visualizer svg rect.note[data-pitch="36"]{
   fill: #2ee;
   stroke: #055;
 }
@@ -54,10 +64,48 @@
   stroke: #888;
 }
 #section3 midi-visualizer svg rect.note.active {
-  opacity: 0.9;
-  stroke: #000;
+  opacity: 1;
+  stroke: rgb(255, 0, 0);
+  stroke-width: 4;
 }
 .center-bold {
     text-align: center; /* Center the text */
     font-weight: bold; /* Make the text bold */
 }
+#section3 midi-visualizer svg rect.note[data-pitch="35"]{
+    fill: #2ee;
+    stroke: #055;
+  }
+ #section3 midi-visualizer svg rect.note[data-pitch="36"]{
+    fill: rgb(0, 255, 94);
+    stroke: rgb(17, 177, 84);
+  }
+  
+#section3 midi-visualizer svg rect.note[data-pitch="38"]{
+    fill: rgb(255, 0, 0);
+    stroke: rgb(93, 0, 0);
+  }
+  #section3 midi-visualizer svg rect.note[data-pitch="40"]{
+    fill: rgb(255, 0, 0);
+    stroke: rgb(93, 0, 0);
+  }
+#section3 midi-visualizer svg rect.note[data-pitch="47"]{
+    fill: rgb(8, 0, 239);
+    stroke: rgb(0, 0, 85);
+  }
+#section3 midi-visualizer svg rect.note[data-pitch="50"]{
+    fill: rgb(255, 251, 0);
+    stroke: rgb(131, 143, 0);
+  }
+  #section3 midi-visualizer svg rect.note[data-pitch="63"]{
+    fill: rgb(0, 0, 0);
+    stroke: rgb(255, 255, 255);
+  }
+  #section3 midi-visualizer svg rect.note[data-pitch="64"]{
+    fill: rgb(64, 64, 64);
+    stroke: rgb(255, 255, 255);
+  }
+  #section3 midi-visualizer svg rect.note[data-pitch="65"]{
+    fill: rgb(136, 136, 136);
+    stroke: rgb(255, 255, 255);
+  }

@@ -9,6 +9,15 @@
 </head>
 <body>
     <section id="section3">
+        <select onchange="changeMidiSrc(this.value)">
+        <option value="son">Default MIDI</option>
+        <option value="output_directory">Output Note 35</option>
+        <!-- Add more options here as needed -->
+    </select>
+
+    
+    <p class="center-bold">BASE RITMO<midi-player src="modified_untitled.mid" sound-font="https://storage.googleapis.com/magentadata/js/soundfonts/jazz_kit" sound-font visualizer="#mypianorollvisualizer0" loop></midi-player>
+<midi-visualizer type="piano-roll" id="mypianorollvisualizer0" src="modified_untitled.mid" sound-font="https://storage.googleapis.com/magentadata/js/soundfonts/jazz_kit"></midi-visualizer>
         <p class="center-bold">BASE RITMO<midi-player src="modified_untitled.mid" sound-font="https://storage.googleapis.com/magentadata/js/soundfonts/jazz_kit" sound-font visualizer="#mypianorollvisualizer1" loop></midi-player>
     <midi-visualizer type="piano-roll" id="mypianorollvisualizer1" src="modified_untitled.mid" sound-font="https://storage.googleapis.com/magentadata/js/soundfonts/jazz_kit"></midi-visualizer>
 
@@ -29,6 +38,36 @@
 </section>
     <!-- Other code remains unchanged -->
     <script>
+        function changeMidiSrc(newFolder) {
+        // Select all <midi-player> and <midi-visualizer> elements in the document
+        const midiPlayers = document.querySelectorAll('midi-player');
+        const midiVisualizers = document.querySelectorAll('midi-visualizer');
+        
+        // Update the src attribute for all <midi-player> elements
+        midiPlayers.forEach(player => {
+            const oldSrc = player.getAttribute('src');
+            const filename = oldSrc.substring(oldSrc.lastIndexOf('/') + 1);
+            const newSrc = newFolder + '/' + filename;
+            player.setAttribute('src', newSrc);
+        });
+
+        // Update the src attribute for all <midi-visualizer> elements
+        midiVisualizers.forEach(visualizer => {
+            const oldSrc = visualizer.getAttribute('src');
+            const filename = oldSrc.substring(oldSrc.lastIndexOf('/') + 1);
+            const newSrc = newFolder + '/' + filename;
+            visualizer.setAttribute('src', newSrc);
+        });
+    }
+
+    mypianorollvisualizer0.config = {
+            maxPitch: 80,
+            minPitch: 30,
+            noteHeight: 5,
+            pixelsPerTimeStep: 400,
+            activeNoteRGB: 'rgb(0, 255, 0)'
+            
+        };
         mypianorollvisualizer1.config = {
             maxPitch: 80,
             minPitch: 30,

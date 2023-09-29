@@ -1,5 +1,7 @@
-import pretty_midi
 import os
+import mido
+from mido import MidiFile, MetaMessage
+import pretty_midi
 
 # Load the MIDI file
 midi_data = pretty_midi.PrettyMIDI('untitled.mid')
@@ -11,6 +13,24 @@ for instrument in midi_data.instruments:
 # Write the modified MIDI data back to the original file or a new file
 midi_data.write('modified_untitled.mid')
 
+# Now load the modified_untitled.mid file with mido to change the tempo
+mid = MidiFile('modified_untitled.mid')
+for i, track in enumerate(mid.tracks):
+    for j, msg in enumerate(track):
+        if msg.type == 'set_tempo':
+            # Set the tempo to 100 BPM
+            tempo = mido.bpm2tempo(100)  # Convert BPM to microseconds per beat
+            track[j] = MetaMessage('set_tempo', tempo=tempo)
+
+# Save the modified MIDI file
+mid.save('modified_untitled.mid')
+
+# Create output directory
+output_directory = 'output_directory'
+if not os.path.exists(output_directory):
+    os.makedirs(output_directory)
+
+
 # Create a dictionary to store notes by pitch
 notes_by_pitch = {}
 
@@ -21,8 +41,6 @@ notes_above_51 = []
 for instrument in midi_data.instruments:
     for note in instrument.notes:
         if note.pitch > 51:
-            # Modify the duration to be a quarter note
-            
             notes_above_51.append(note)
         if note.pitch not in notes_by_pitch:
             notes_by_pitch[note.pitch] = []
@@ -31,11 +49,6 @@ for instrument in midi_data.instruments:
 # Combine D2 and E2 notes in the same list
 notes_by_pitch[38].extend(notes_by_pitch[40])
 notes_by_pitch[40] = []
-
-# Create output directory
-output_directory = 'output_directory'
-if not os.path.exists(output_directory):
-    os.makedirs(output_directory)
 
 # Iterate through notes by pitch and create separate files
 for pitch, notes in notes_by_pitch.items():
@@ -52,3 +65,14 @@ for pitch, notes in notes_by_pitch.items():
         # Write out the MIDI data
         output_filename = f'output_note_{pitch}.mid'
         single_note_midi.write(os.path.join(output_directory, output_filename))
+
+        # Load the output file with mido to change the tempo
+        mid = MidiFile(os.path.join(output_directory, output_filename))
+        for i, track in enumerate(mid.tracks):
+            for j, msg in enumerate(track):
+                if msg.type == 'set_tempo':
+                    # Set the tempo to 100 BPM
+                    tempo = mido.bpm2tempo(100)  # Convert BPM to microseconds per beat
+                    track[j] = MetaMessage('set_tempo', tempo=tempo)
+        # Save the modified MIDI file
+        mid.save(os.path.join(output_directory, output_filename))
