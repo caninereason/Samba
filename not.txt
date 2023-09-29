@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Samba Player</title>
+    <script src="https://cdn.jsdelivr.net/combine/npm/tone@14.7.58,npm/@magenta/music@1.23.1/es6/core.js,npm/focus-visible@5,npm/html-midi-player@1.5.0" ></script>
+   
+    <!-- Add CSS and JavaScript references -->
+</head>
+<body>
+    <midi-player src="modified_untitled.mid" sound-font="https://storage.googleapis.com/magentadata/js/soundfonts/jazz_kit" sound-font visualizer="#mypianorollvisualizer1" loop></midi-player>
+    <midi-visualizer type="piano-roll" id="mypianorollvisualizer1" src="modified_untitled.mid" sound-font="https://storage.googleapis.com/magentadata/js/soundfonts/jazz_kit"></midi-visualizer>
+
+    <midi-player src="output_directory/output_note_36.mid" sound-font="https://storage.googleapis.com/magentadata/js/soundfonts/jazz_kit" sound-font visualizer="#myStaffVisualizer" loop ></midi-player>
+    <midi-visualizer type="staff" id="myStaffVisualizer" src="output_directory/output_note_36.mid" sound-font="https://storage.googleapis.com/magentadata/js/soundfonts/jazz_kit"></midi-visualizer>
+    
+    <midi-player src="output_directory/output_note_38.mid" sound-font="https://storage.googleapis.com/magentadata/js/soundfonts/jazz_kit" sound-font visualizer="#myStaffVisualizer1" loop></midi-player>
+    <midi-visualizer type="staff" id="myStaffVisualizer1" src="output_directory/output_note_38.mid" sound-font="https://storage.googleapis.com/magentadata/js/soundfonts/jazz_kit"></midi-visualizer>
+    
+    <midi-player src="output_directory/output_note_40.mid" sound-font="https://storage.googleapis.com/magentadata/js/soundfonts/jazz_kit" sound-font visualizer="#myStaffVisualizer2" loop></midi-player>
+    <midi-visualizer type="staff" id="myStaffVisualizer2" src="output_directory/output_note_40.mid" sound-font="https://storage.googleapis.com/magentadata/js/soundfonts/jazz_kit"></midi-visualizer>
+    
+    <midi-player src="output_directory/output_note_47.mid" sound-font="https://storage.googleapis.com/magentadata/js/soundfonts/jazz_kit" sound-font visualizer="#myStaffVisualizer3" loop></midi-player>
+    <midi-visualizer type="staff" id="myStaffVisualizer3" src="output_directory/output_note_47.mid" sound-font="https://storage.googleapis.com/magentadata/js/soundfonts/jazz_kit"></midi-visualizer>
+    
+    <midi-player src="output_directory/output_note_50.mid" sound-font="https://storage.googleapis.com/magentadata/js/soundfonts/jazz_kit" sound-font visualizer="#myStaffVisualizer4" loop></midi-player>
+    <midi-visualizer type="staff" id="myStaffVisualizer4" src="output_directory/output_note_50.mid" sound-font="https://storage.googleapis.com/magentadata/js/soundfonts/jazz_kit"></midi-visualizer>
+   
+    <!-- Other code remains unchanged -->
+</body>
+</html>
