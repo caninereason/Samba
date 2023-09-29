@@ -57,3 +57,7 @@
   opacity: 0.9;
   stroke: #000;
 }
+.center-bold {
+    text-align: center; /* Center the text */
+    font-weight: bold; /* Make the text bold */
+}
