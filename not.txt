@@ -29,3 +29,14 @@
     <!-- Other code remains unchanged -->
 </body>
 </html>
+    function updateSrc() {
+    const select1Value = document.getElementById('select1').value;
+    const select2Value = document.getElementById('select2').value;
+    const newSrc = `${select1Value}/${select2Value}/${select1Value}_${select2Value}.mid`;
+
+    document.getElementById('midiPlayer').setAttribute('src', newSrc);
+    document.getElementById('midiVisualizer').setAttribute('src', newSrc);
+}
+window.onload = updateSrc;
+const midiPlayer = document.getElementById('midiPlayer1');
+  midiPlayer.start();

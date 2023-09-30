@@ -50,6 +50,7 @@
 #section3 midi-visualizer svg rect.note {
   
   stroke-width: 1;
+  overflow:auto
 }
 #section3 midi-visualizer svg rect.note[data-instrument="0"]{
   fill: #e22;
@@ -109,3 +110,4 @@
     fill: rgb(136, 136, 136);
     stroke: rgb(255, 255, 255);
   }
+  

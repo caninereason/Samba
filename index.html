@@ -9,17 +9,27 @@
 </head>
 <body>
     <section id="section3">
-        <select onchange="changeMidiSrc(this.value)">
-        <option value="son">Default MIDI</option>
-        <option value="output_directory">Output Note 35</option>
-        <!-- Add more options here as needed -->
-    </select>
+        <select id="firstSelect" onchange="changeMidiSrc()">
+            <option value="AvenidaDida">AvenidaDida</option>
+            <option value="Son">Son</option>
+            
+        </select>
+        <select id="secondSelect" onchange="changeMidiSrc()">
+            <option value="BaseRitmo">BaseRitmo</option>
+            <option value="Corte3.1">Corte3.1</option>
+            <option value="Corte3.2">Corte3.2</option>
+            <option value="Corte4">Corte4</option>
+            <option value="Llamada1">Llamada1</option>
+            <!-- Add more options here as needed -->
+        </select>
+        
+
 
     
-    <p class="center-bold">BASE RITMO<midi-player src="modified_untitled.mid" sound-font="https://storage.googleapis.com/magentadata/js/soundfonts/jazz_kit" sound-font visualizer="#mypianorollvisualizer0" loop></midi-player>
-<midi-visualizer type="piano-roll" id="mypianorollvisualizer0" src="modified_untitled.mid" sound-font="https://storage.googleapis.com/magentadata/js/soundfonts/jazz_kit"></midi-visualizer>
-        <p class="center-bold">BASE RITMO<midi-player src="modified_untitled.mid" sound-font="https://storage.googleapis.com/magentadata/js/soundfonts/jazz_kit" sound-font visualizer="#mypianorollvisualizer1" loop></midi-player>
-    <midi-visualizer type="piano-roll" id="mypianorollvisualizer1" src="modified_untitled.mid" sound-font="https://storage.googleapis.com/magentadata/js/soundfonts/jazz_kit"></midi-visualizer>
+   
+        <p class="center-bold">BASE RITMO<midi-player id="midiPlayer1" src="" sound-font="https://storage.googleapis.com/magentadata/js/soundfonts/jazz_kit" sound-font visualizer="#mypianorollvisualizer1" loop></midi-player>
+            <midi-visualizer type="piano-roll" id="mypianorollvisualizer1" src="" sound-font="https://storage.googleapis.com/magentadata/js/soundfonts/jazz_kit"></midi-visualizer>
+        </p>
 
     <p class="center-bold">SURDO1<midi-player src="output_directory/output_note_35.mid" sound-font="https://storage.googleapis.com/magentadata/js/soundfonts/jazz_kit" sound-font visualizer="#mypianorollvisualizer2" loop ></midi-player>
     <midi-visualizer type="piano-roll" id="mypianorollvisualizer2" src="output_directory/output_note_35.mid" sound-font="https://storage.googleapis.com/magentadata/js/soundfonts/jazz_kit"></midi-visualizer>
@@ -37,42 +47,66 @@
         <midi-visualizer type="piano-roll" id="mypianorollvisualizer6" src="output_directory/output_note_38.mid" sound-font="https://storage.googleapis.com/magentadata/js/soundfonts/jazz_kit"></midi-visualizer>
 </section>
     <!-- Other code remains unchanged -->
+    
     <script>
-        function changeMidiSrc(newFolder) {
-        // Select all <midi-player> and <midi-visualizer> elements in the document
-        const midiPlayers = document.querySelectorAll('midi-player');
-        const midiVisualizers = document.querySelectorAll('midi-visualizer');
-        
-        // Update the src attribute for all <midi-player> elements
-        midiPlayers.forEach(player => {
-            const oldSrc = player.getAttribute('src');
-            const filename = oldSrc.substring(oldSrc.lastIndexOf('/') + 1);
-            const newSrc = newFolder + '/' + filename;
-            player.setAttribute('src', newSrc);
-        });
+        window.onload = function() {
+     changeMidiSrc();
+ }
+    
+function changeMidiSrc() {
+  // Get selected values from both selectors
+  const firstSelectValue = document.getElementById('firstSelect').value;
+  const secondSelectValue = document.getElementById('secondSelect').value;
 
-        // Update the src attribute for all <midi-visualizer> elements
-        midiVisualizers.forEach(visualizer => {
-            const oldSrc = visualizer.getAttribute('src');
-            const filename = oldSrc.substring(oldSrc.lastIndexOf('/') + 1);
-            const newSrc = newFolder + '/' + filename;
-            visualizer.setAttribute('src', newSrc);
-        });
+  // Construct the new path
+  const newPath = `${firstSelectValue}/${secondSelectValue}`;
+
+  // Select elements by tag name
+  const midiPlayers = document.querySelectorAll('midi-player');
+  const midiVisualizers = document.querySelectorAll('midi-visualizer');
+
+  // Update the src attribute for all midi-player and midi-visualizer elements
+  midiPlayers.forEach(player => {
+      changeSrcPath(newPath, player);
+  });
+
+  midiVisualizers.forEach(visualizer => {
+      changeSrcPath(newPath, visualizer);
+  });
+  
+       
     }
 
-    mypianorollvisualizer0.config = {
-            maxPitch: 80,
-            minPitch: 30,
-            noteHeight: 5,
-            pixelsPerTimeStep: 400,
-            activeNoteRGB: 'rgb(0, 255, 0)'
-            
-        };
+
+function changeSrcPath(newPath, element) {
+  let currentSrc = element.getAttribute('src');
+  let fileName = currentSrc.split('/').pop(); // extract everything after the last '/'
+  let newSrc = `${newPath}/${fileName}`;
+  element.setAttribute('src', newSrc);
+}
+
+
+// This function is for changing the src for a specific midi player and visualizer by ID
+function updateSrc() {
+    const select1Value = document.getElementById('firstSelect').value; // corrected to 'firstSelect'
+    const select2Value = document.getElementById('secondSelect').value; // corrected to 'secondSelect'
+    const newSrc = `${select1Value}/${select2Value}/${select1Value}_${select2Value}.mid`;
+
+    document.getElementById('midiPlayer1').setAttribute('src', newSrc);
+    document.getElementById('mypianorollvisualizer1').setAttribute('src', newSrc);
+    document.getElementById('firstSelect').addEventListener('change', updateSrc);
+document.getElementById('secondSelect').addEventListener('change', updateSrc);
+}
+
+window.onload = updateSrc;
+
+
+    
         mypianorollvisualizer1.config = {
             maxPitch: 80,
             minPitch: 30,
             noteHeight: 5,
-            pixelsPerTimeStep: 400,
+            pixelsPerTimeStep: 200,
             
             
         };

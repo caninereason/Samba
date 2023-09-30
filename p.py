@@ -1,34 +1,46 @@
 import os
+import sys
 import mido
 from mido import MidiFile, MetaMessage
 import pretty_midi
 
-# Load the MIDI file
-midi_data = pretty_midi.PrettyMIDI('untitled.mid')
+if len(sys.argv) < 2:
+    print("Usage: python p.py <midi_file>")
+    sys.exit()
 
-# Set is_drum=True for each instrument in the loaded MIDI data
+input_file = sys.argv[1]
+midi_data = pretty_midi.PrettyMIDI(input_file)
+
 for instrument in midi_data.instruments:
     instrument.is_drum = True
 
-# Write the modified MIDI data back to the original file or a new file
-midi_data.write('modified_untitled.mid')
+filename_without_extension = os.path.splitext(os.path.basename(input_file))[0]
+words = filename_without_extension.split('_')
 
-# Now load the modified_untitled.mid file with mido to change the tempo
-mid = MidiFile('modified_untitled.mid')
+if len(words) == 2:
+    first_word, second_word = words
+    output_directory = os.path.join(os.getcwd(), first_word, second_word)
+    if not os.path.exists(output_directory):
+        os.makedirs(output_directory)
+else:
+    print(f"The filename does not contain exactly one underscore.")
+    sys.exit()
+
+output_file = 'modified_' + os.path.basename(input_file)
+midi_data.write(output_file)
+
+mid = MidiFile(output_file)
 for i, track in enumerate(mid.tracks):
     for j, msg in enumerate(track):
         if msg.type == 'set_tempo':
-            # Set the tempo to 100 BPM
-            tempo = mido.bpm2tempo(100)  # Convert BPM to microseconds per beat
+            tempo = mido.bpm2tempo(100)
             track[j] = MetaMessage('set_tempo', tempo=tempo)
 
-# Save the modified MIDI file
-mid.save('modified_untitled.mid')
+output_path = os.path.join(output_directory, os.path.basename(input_file))
+mid.save(output_path)
 
-# Create output directory
-output_directory = 'output_directory'
-if not os.path.exists(output_directory):
-    os.makedirs(output_directory)
+
+
 
 
 # Create a dictionary to store notes by pitch
@@ -47,8 +59,15 @@ for instrument in midi_data.instruments:
         notes_by_pitch[note.pitch].append(note)
 
 # Combine D2 and E2 notes in the same list
-notes_by_pitch[38].extend(notes_by_pitch[40])
-notes_by_pitch[40] = []
+# Checking if index 40 exists and is not None in notes_by_pitch
+if notes_by_pitch.get(40) is not None:
+    # If index 38 doesn't exist, initialize it as an empty list
+    if notes_by_pitch.get(38) is None:
+        notes_by_pitch[38] = []
+    # Extend the notes at index 38 with notes from index 40
+    notes_by_pitch[38].extend(notes_by_pitch[40])
+    # Clear the notes at index 40
+    notes_by_pitch[40] = []
 
 # Iterate through notes by pitch and create separate files
 for pitch, notes in notes_by_pitch.items():
