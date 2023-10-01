@@ -29,21 +29,34 @@
 
 /* Custom visualizer style */
 #section3 midi-visualizer .piano-roll-visualizer {
-    background: repeating-linear-gradient(
-      90deg,
-      #ffd 0,
-      #ffd 58px,
-      #000 59px,
-      #000 60px
-    );
-    background-size: 100% 50px; /* Set the height of each line */
-    border: 2px solid black;
-    border-top: none;
-    border-radius: 0 0 10px 10px;
-    margin: 4px;
-    margin-top: 0;
-    overflow: visible;
-  }
+  background: repeating-linear-gradient(
+    90deg,
+    #ffd 0,
+    #ffd 58px,  /* Set the size of first line */
+    #000 59px,
+    #000 60px,  /* Set the size of the space between first and second line */
+    #ffd 60px,
+    #ffd 118px,  /* Set the size of second line */
+    #000 119px,
+    #000 120px,  /* Set the size of the space between second and third line */
+    #ffd 120px,
+    #ffd 178px,  /* Set the size of third line */
+    #000 179px,
+    #000 180px,  /* Set the size of the space between third and fourth line */
+    #ffd 180px,
+    #ffd 235px,  /* Set the size of fourth line (larger than others) */
+    #000 236px,
+    #000 240px   /* Set the size of the space between fourth and next line */
+  );
+  background-size: 100% 240px; /* Set the total size to the sum of four lines and spaces */
+  border: 2px solid black;
+  border-top: none;
+  border-radius: 0 0 10px 10px;
+  margin: 4px;
+  margin-top: 0;
+  overflow: visible;
+}
+
   
   
 
