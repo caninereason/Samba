@@ -49,6 +49,9 @@
     <!-- Other code remains unchanged -->
     
     <script>
+         window.onload = function() {
+        document.getElementById('firstSelect').selectedIndex = 0;
+    }
         const mp = document.querySelector('midi-player');
        console.log(mp.duration);
        
