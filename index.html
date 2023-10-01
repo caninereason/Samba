@@ -27,24 +27,24 @@
 
     
    
-        <p class="center-bold">BASE RITMO<midi-player id="midiPlayer1" src="" sound-font="https://storage.googleapis.com/magentadata/js/soundfonts/jazz_kit" sound-font visualizer="#mypianorollvisualizer1" loop></midi-player>
-            <midi-visualizer type="piano-roll" id="mypianorollvisualizer1" src="" sound-font="https://storage.googleapis.com/magentadata/js/soundfonts/jazz_kit"></midi-visualizer>
+        <p class="center-bold">BASE RITMO<midi-player id="midiPlayer1" src="AvenidaDida/BaseRitmo/AvenidaDida_BaseRitmo.mid" sound-font="https://storage.googleapis.com/magentadata/js/soundfonts/jazz_kit" sound-font visualizer="#mypianorollvisualizer1" loop></midi-player>
+            <midi-visualizer type="piano-roll" id="mypianorollvisualizer1" src="AvenidaDida/BaseRitmo/AvenidaDida_BaseRitmo.mid" sound-font="https://storage.googleapis.com/magentadata/js/soundfonts/jazz_kit"></midi-visualizer>
         </p>
 
-    <p class="center-bold">SURDO1<midi-player src="output_directory/output_note_35.mid" sound-font="https://storage.googleapis.com/magentadata/js/soundfonts/jazz_kit" sound-font visualizer="#mypianorollvisualizer2" loop ></midi-player>
-    <midi-visualizer type="piano-roll" id="mypianorollvisualizer2" src="output_directory/output_note_35.mid" sound-font="https://storage.googleapis.com/magentadata/js/soundfonts/jazz_kit"></midi-visualizer>
+    <p class="center-bold">SURDO1<midi-player src="AvenidaDida/BaseRitmo/output_note_35.mid" sound-font="https://storage.googleapis.com/magentadata/js/soundfonts/jazz_kit" sound-font visualizer="#mypianorollvisualizer2" loop ></midi-player>
+    <midi-visualizer type="piano-roll" src="AvenidaDida/BaseRitmo/output_note_35.mid" id="mypianorollvisualizer2"  sound-font="https://storage.googleapis.com/magentadata/js/soundfonts/jazz_kit"></midi-visualizer>
 
-    <p class="center-bold">SURDO2<midi-player src="output_directory/output_note_36.mid" sound-font="https://storage.googleapis.com/magentadata/js/soundfonts/jazz_kit" sound-font visualizer="#mypianorollvisualizer3" loop ></midi-player>
-        <midi-visualizer type="piano-roll" id="mypianorollvisualizer3" src="output_directory/output_note_36.mid" sound-font="https://storage.googleapis.com/magentadata/js/soundfonts/jazz_kit"></midi-visualizer>
+    <p class="center-bold">SURDO2<midi-player src="AvenidaDida/BaseRitmo/output_note_36.mid" sound-font="https://storage.googleapis.com/magentadata/js/soundfonts/jazz_kit" sound-font visualizer="#mypianorollvisualizer3" loop ></midi-player>
+        <midi-visualizer type="piano-roll" id="mypianorollvisualizer3" src="AvenidaDida/BaseRitmo/output_note_36.mid" sound-font="https://storage.googleapis.com/magentadata/js/soundfonts/jazz_kit"></midi-visualizer>
                 
-    <p class="center-bold">DOBRAS<midi-player src="output_directory/output_note_47.mid" sound-font="https://storage.googleapis.com/magentadata/js/soundfonts/jazz_kit" sound-font visualizer="#mypianorollvisualizer4" loop></midi-player>
-    <midi-visualizer type="piano-roll" id="mypianorollvisualizer4" src="output_directory/output_note_47.mid" sound-font="https://storage.googleapis.com/magentadata/js/soundfonts/jazz_kit"></midi-visualizer>
+    <p class="center-bold">DOBRAS<midi-player src="AvenidaDida/BaseRitmo/output_note_47.mid" sound-font="https://storage.googleapis.com/magentadata/js/soundfonts/jazz_kit" sound-font visualizer="#mypianorollvisualizer4" loop></midi-player>
+    <midi-visualizer type="piano-roll" id="mypianorollvisualizer4" src="AvenidaDida/BaseRitmo/output_note_47.mid" sound-font="https://storage.googleapis.com/magentadata/js/soundfonts/jazz_kit"></midi-visualizer>
     
-    <p class="center-bold">REPIQUE<midi-player src="output_directory/output_note_50.mid" sound-font="https://storage.googleapis.com/magentadata/js/soundfonts/jazz_kit" sound-font visualizer="#mypianorollvisualizer5" loop></midi-player>
-    <midi-visualizer type="piano-roll" id="mypianorollvisualizer5" src="output_directory/output_note_50.mid" sound-font="https://storage.googleapis.com/magentadata/js/soundfonts/jazz_kit"></midi-visualizer>
+    <p class="center-bold">REPIQUE<midi-player src="AvenidaDida/BaseRitmo/output_note_50.mid" sound-font="https://storage.googleapis.com/magentadata/js/soundfonts/jazz_kit" sound-font visualizer="#mypianorollvisualizer5" loop></midi-player>
+    <midi-visualizer type="piano-roll" id="mypianorollvisualizer5" src="AvenidaDida/BaseRitmo/output_note_50.mid" sound-font="https://storage.googleapis.com/magentadata/js/soundfonts/jazz_kit"></midi-visualizer>
     
-    <p class="center-bold">CAJA<midi-player src="output_directory/output_note_38.mid" sound-font="https://storage.googleapis.com/magentadata/js/soundfonts/jazz_kit" sound-font visualizer="#mypianorollvisualizer6" loop></midi-player>
-        <midi-visualizer type="piano-roll" id="mypianorollvisualizer6" src="output_directory/output_note_38.mid" sound-font="https://storage.googleapis.com/magentadata/js/soundfonts/jazz_kit"></midi-visualizer>
+    <p class="center-bold">CAJA<midi-player src="AvenidaDida/BaseRitmo/output_note_38.mid" sound-font="https://storage.googleapis.com/magentadata/js/soundfonts/jazz_kit" sound-font visualizer="#mypianorollvisualizer6" loop></midi-player>
+        <midi-visualizer type="piano-roll" id="mypianorollvisualizer6" src="AvenidaDida/BaseRitmo/output_note_38.mid" sound-font="https://storage.googleapis.com/magentadata/js/soundfonts/jazz_kit"></midi-visualizer>
 </section>
     <!-- Other code remains unchanged -->
     
@@ -57,20 +57,29 @@
   AvenidaDida: ['BaseRitmo', 'Corte3.1', 'Corte3.2', 'Corte4', 'Llamada1'],
   'Son.Iniciacion': ['BaseRitmo', 'Corte3', 'Entrada.1', 'Entrada.2']
 };
+ // Initial sources stored in an object
+ const initialSources = {
+        'mypianorollvisualizer2': 'output_note_35.mid',
+        'mypianorollvisualizer3': 'output_note_36.mid',
+        'mypianorollvisualizer4': 'output_note_47.mid',
+        'mypianorollvisualizer5': 'output_note_50.mid',
+        'mypianorollvisualizer6': 'output_note_38.mid',
+    };
 
+    // Function to reset the src attributes to the initial values
+    function resetSrc() {
+        for (const id in initialSources) {
+            const element = document.getElementById(id);
+            element.setAttribute('src', initialSources[id]);
+        }
+    }
 
-    
-
-    
-function changeSrcPath(newPath, element) {
    
-  let currentSrc = element.getAttribute('src');
-  let fileName = currentSrc.split('/').pop(); // extract everything after the last '/'
-  let newSrc = `${newPath}/${fileName}`;
-  element.setAttribute('src', newSrc);
-  
-  
-}
+
+    
+
+    
+
 
 
 // This function is for changing the src for a specific midi player and visualizer by ID
@@ -89,8 +98,9 @@ function updateSrc(event) {
 document.getElementById('secondSelect').addEventListener('change', updateSrc);
 const midiPlayers = document.querySelectorAll('midi-player');
   const midiVisualizers = document.querySelectorAll('midi-visualizer');
-
-  
+  mp.addEventListener('play', function() {
+    updateSrc();})
+  resetSrc();
   // Update the src attribute for all midi-player and midi-visualizer elements
   midiPlayers.forEach(player => {
       changeSrcPath(newPath, player);
@@ -127,11 +137,22 @@ const midiPlayers = document.querySelectorAll('midi-player');
 }
 }
 
+function changeSrcPath(newPath, element) {
+  let currentSrc = element.getAttribute('src');
+  
+  // If there's no currentSrc, set a default one or handle accordingly
+  if (!currentSrc) {
+    currentSrc = 'empty.mid'; // set to your default path and file
+  }
 
+  let fileName = currentSrc.split('/').pop(); // extract everything after the last '/'
+  let newSrc = `${newPath}/${fileName}`;
+  element.setAttribute('src', newSrc);
+}
 
 // Assume you have an element with the id "myElement"
 
-    
+
 
 
 mp.addEventListener('load', function() {
