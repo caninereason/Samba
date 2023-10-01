@@ -110,4 +110,9 @@
     fill: rgb(136, 136, 136);
     stroke: rgb(255, 255, 255);
   }
-  
+  select {
+    padding: 10px 20px ;
+    font-size: 18px;
+    border-radius: 5px;
+    border-style: ridge;
+}
