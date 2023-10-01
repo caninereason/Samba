@@ -9,12 +9,12 @@
 </head>
 <body>
     <section id="section3">
-        <select id="firstSelect" onchange="changeMidiSrc()">
+        <select id="firstSelect" onchange="updateSrc(event)" >
             <option value="AvenidaDida">AvenidaDida</option>
-            <option value="Son">Son</option>
+            <option value="Son.Iniciacion">Son.Iniciacion</option>
             
         </select>
-        <select id="secondSelect" onchange="changeMidiSrc()">
+        <select id="secondSelect" onchange="updateSrc(event)" >
             <option value="BaseRitmo">BaseRitmo</option>
             <option value="Corte3.1">Corte3.1</option>
             <option value="Corte3.2">Corte3.2</option>
@@ -23,7 +23,7 @@
             <!-- Add more options here as needed -->
         </select>
         
-
+<button>click</button>
 
     
    
@@ -49,102 +49,150 @@
     <!-- Other code remains unchanged -->
     
     <script>
-        window.onload = function() {
-     changeMidiSrc();
- }
-    
-function changeMidiSrc() {
-  // Get selected values from both selectors
-  const firstSelectValue = document.getElementById('firstSelect').value;
-  const secondSelectValue = document.getElementById('secondSelect').value;
-
-  // Construct the new path
-  const newPath = `${firstSelectValue}/${secondSelectValue}`;
-
-  // Select elements by tag name
-  const midiPlayers = document.querySelectorAll('midi-player');
-  const midiVisualizers = document.querySelectorAll('midi-visualizer');
-
-  // Update the src attribute for all midi-player and midi-visualizer elements
-  midiPlayers.forEach(player => {
-      changeSrcPath(newPath, player);
-  });
-
-  midiVisualizers.forEach(visualizer => {
-      changeSrcPath(newPath, visualizer);
-  });
-  
+        const mp = document.querySelector('midi-player');
+       console.log(mp.duration);
        
-    }
+        
+       const options = {
+  AvenidaDida: ['BaseRitmo', 'Corte3.1', 'Corte3.2', 'Corte4', 'Llamada1'],
+  'Son.Iniciacion': ['BaseRitmo', 'Corte3', 'Entrada.1', 'Entrada.2']
+};
 
 
+    
+
+    
 function changeSrcPath(newPath, element) {
+   
   let currentSrc = element.getAttribute('src');
   let fileName = currentSrc.split('/').pop(); // extract everything after the last '/'
   let newSrc = `${newPath}/${fileName}`;
   element.setAttribute('src', newSrc);
+  
+  
 }
 
 
 // This function is for changing the src for a specific midi player and visualizer by ID
-function updateSrc() {
+function updateSrc(event) {
+    const changedElementId = event.target.id;
     const select1Value = document.getElementById('firstSelect').value; // corrected to 'firstSelect'
     const select2Value = document.getElementById('secondSelect').value; // corrected to 'secondSelect'
     const newSrc = `${select1Value}/${select2Value}/${select1Value}_${select2Value}.mid`;
+    
 
+  // Construct the new path
+  const newPath =`${select1Value}/${select2Value}`;
     document.getElementById('midiPlayer1').setAttribute('src', newSrc);
     document.getElementById('mypianorollvisualizer1').setAttribute('src', newSrc);
     document.getElementById('firstSelect').addEventListener('change', updateSrc);
 document.getElementById('secondSelect').addEventListener('change', updateSrc);
+const midiPlayers = document.querySelectorAll('midi-player');
+  const midiVisualizers = document.querySelectorAll('midi-visualizer');
+
+  
+  // Update the src attribute for all midi-player and midi-visualizer elements
+  midiPlayers.forEach(player => {
+      changeSrcPath(newPath, player);
+      console.log(player);
+  });
+
+  midiVisualizers.forEach(visualizer => {
+      changeSrcPath(newPath, visualizer);
+      console.log(visualizer);
+  });
+  if (changedElementId === 'firstSelect') {
+    // Get the selected value from the first select
+    const firstSelectValue = document.getElementById('firstSelect').value;
+            
+    // Get the options for the selected value
+    const secondSelectOptions = options[firstSelectValue] || [];
+            
+    // Get the second select element
+    const secondSelect = document.getElementById('secondSelect');
+
+    // Clear all existing options
+    secondSelect.innerHTML = '';
+            
+    // Add new options
+    secondSelectOptions.forEach(option => {
+        const optionElement = document.createElement('option');
+        optionElement.value = option;
+        optionElement.text = option;
+        secondSelect.add(optionElement);
+    })
+
+    // Set the selected index to 0
+    secondSelect.selectedIndex = 0;
+}
 }
 
-window.onload = updateSrc;
 
+
+// Assume you have an element with the id "myElement"
 
     
-        mypianorollvisualizer1.config = {
+
+
+mp.addEventListener('load', function() {
+    let ppts;
+    if (mp.duration > 2.8) {
+        ppts = 200;
+    } else {
+        ppts = 400;
+    }
+    
+    mypianorollvisualizer1.config = {
             maxPitch: 80,
             minPitch: 30,
             noteHeight: 5,
-            pixelsPerTimeStep: 200,
+            pixelsPerTimeStep: ppts,
             
             
         };
         mypianorollvisualizer2.config = {
             
             noteHeight: 5,
-            pixelsPerTimeStep: 400,
+            pixelsPerTimeStep: ppts,
             
             
         };
         mypianorollvisualizer3.config = {
             
             noteHeight: 5,
-            pixelsPerTimeStep: 400,
+            pixelsPerTimeStep: ppts,
             
             
         };
         mypianorollvisualizer4.config = {
             
             noteHeight: 5,
-            pixelsPerTimeStep: 400,
+            pixelsPerTimeStep:ppts,
             
             
         };
         mypianorollvisualizer5.config = {
             
             noteHeight: 5,
-            pixelsPerTimeStep: 400,
+            pixelsPerTimeStep: ppts,
             
             
         };
         mypianorollvisualizer6.config = {
             
             noteHeight: 5,
-            pixelsPerTimeStep: 400,
+            pixelsPerTimeStep: ppts,
             
             
         };
+        
+});
+
+
+       
+
+       
+
     </script>
 </body>
 </html>
