@@ -106,11 +106,11 @@
     fill: rgb(255, 0, 0);
     stroke: rgb(93, 0, 0);
   }
-#section3 midi-visualizer svg rect.note[data-pitch="45"]{
+#section3 midi-visualizer svg rect.note[data-pitch="43"]{
     fill: rgb(8, 0, 239);
     stroke: rgb(0, 0, 85);
   }
-#section3 midi-visualizer svg rect.note[data-pitch="43"]{
+#section3 midi-visualizer svg rect.note[data-pitch="45"]{
     fill: rgb(255, 251, 0);
     stroke: rgb(131, 143, 0);
   }
