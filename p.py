@@ -3,6 +3,7 @@ import sys
 import mido
 from mido import MidiFile, MetaMessage
 import pretty_midi
+import shutil
 
 if len(sys.argv) < 2:
     print("Usage: python p.py <midi_file>")
@@ -25,6 +26,10 @@ if len(words) == 2:
 else:
     print(f"The filename does not contain exactly one underscore.")
     sys.exit()
+source_dir = 'empty'
+all_files = [f for f in os.listdir(source_dir) if os.path.isfile(os.path.join(source_dir, f))]
+for file in all_files[:5]:
+    shutil.copy(os.path.join(source_dir, file), output_directory)
 
 output_file = 'modified_' + os.path.basename(input_file)
 midi_data.write(output_file)

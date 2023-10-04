@@ -56,7 +56,10 @@
   margin-top: 0;
   overflow: visible;
 }
-
+.flex-container {
+  display: flex;
+  align-items: center;
+}
   
   
 
