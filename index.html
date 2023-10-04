@@ -12,6 +12,7 @@
         <select id="firstSelect" onchange="updateSrc(event)">
             <option value="Avenida.Dida">Avenida.Dida</option>
             <option value="Son.Iniciacion">Son.Iniciacion</option>
+            <option value="drum">drum</option>
         </select>
         <select id="secondSelect" onchange="updateSrc(event)">
             <option value="BaseRitmo">BaseRitmo</option>
@@ -35,11 +36,11 @@
     <p class="center-bold">SURDO2</p><midi-player src="Avenida.Dida/BaseRitmo/output_note_36.mid" sound-font="https://storage.googleapis.com/magentadata/js/soundfonts/jazz_kit" sound-font visualizer="#mypianorollvisualizer3" loop ></midi-player>
         <midi-visualizer type="piano-roll" id="mypianorollvisualizer3" src="Avenida.Dida/BaseRitmo/output_note_36.mid" sound-font="https://storage.googleapis.com/magentadata/js/soundfonts/jazz_kit"></midi-visualizer>
                 
-    <p class="center-bold">DOBRAS</p><midi-player src="Avenida.Dida/BaseRitmo/output_note_47.mid" sound-font="https://storage.googleapis.com/magentadata/js/soundfonts/jazz_kit" sound-font visualizer="#mypianorollvisualizer4" loop></midi-player>
-    <midi-visualizer type="piano-roll" id="mypianorollvisualizer4" src="Avenida.Dida/BaseRitmo/output_note_47.mid" sound-font="https://storage.googleapis.com/magentadata/js/soundfonts/jazz_kit"></midi-visualizer>
+    <p class="center-bold">DOBRAS</p><midi-player src="Avenida.Dida/BaseRitmo/output_note_45.mid" sound-font="https://storage.googleapis.com/magentadata/js/soundfonts/jazz_kit" sound-font visualizer="#mypianorollvisualizer4" loop></midi-player>
+    <midi-visualizer type="piano-roll" id="mypianorollvisualizer4" src="Avenida.Dida/BaseRitmo/output_note_45.mid" sound-font="https://storage.googleapis.com/magentadata/js/soundfonts/jazz_kit"></midi-visualizer>
     
-    <p class="center-bold">REPIQUE</p><midi-player src="Avenida.Dida/BaseRitmo/output_note_50.mid" sound-font="https://storage.googleapis.com/magentadata/js/soundfonts/jazz_kit" sound-font visualizer="#mypianorollvisualizer5" loop></midi-player>
-    <midi-visualizer type="piano-roll" id="mypianorollvisualizer5" src="Avenida.Dida/BaseRitmo/output_note_50.mid" sound-font="https://storage.googleapis.com/magentadata/js/soundfonts/jazz_kit"></midi-visualizer>
+    <p class="center-bold">REPIQUE</p><midi-player src="Avenida.Dida/BaseRitmo/output_note_43.mid" sound-font="https://storage.googleapis.com/magentadata/js/soundfonts/jazz_kit" sound-font visualizer="#mypianorollvisualizer5" loop></midi-player>
+    <midi-visualizer type="piano-roll" id="mypianorollvisualizer5" src="Avenida.Dida/BaseRitmo/output_note_43.mid" sound-font="https://storage.googleapis.com/magentadata/js/soundfonts/jazz_kit"></midi-visualizer>
     
     <p class="center-bold">CAJA</p><midi-player src="Avenida.Dida/BaseRitmo/output_note_38.mid" sound-font="https://storage.googleapis.com/magentadata/js/soundfonts/jazz_kit" sound-font visualizer="#mypianorollvisualizer6" loop></midi-player>
         <midi-visualizer type="piano-roll" id="mypianorollvisualizer6" src="Avenida.Dida/BaseRitmo/output_note_38.mid" sound-font="https://storage.googleapis.com/magentadata/js/soundfonts/jazz_kit"></midi-visualizer>
@@ -57,14 +58,15 @@
         
        const options = {
   'Avenida.Dida': ['BaseRitmo', 'Corte3.1', 'Corte3.2', 'Corte4', 'Llamada1','Llamada1.2'],
-  'Son.Iniciacion': ['BaseRitmo', 'Corte3', 'Entrada.1', 'Entrada.2']
+  'Son.Iniciacion': ['BaseRitmo', 'Corte3', 'Entrada.1', 'Entrada.2'],
+  'drum':['drum']
 };
  // Initial sources stored in an object
  const initialSources = {
         'mypianorollvisualizer2': 'output_note_35.mid',
         'mypianorollvisualizer3': 'output_note_36.mid',
-        'mypianorollvisualizer4': 'output_note_47.mid',
-        'mypianorollvisualizer5': 'output_note_50.mid',
+        'mypianorollvisualizer4': 'output_note_45.mid',
+        'mypianorollvisualizer5': 'output_note_43.mid',
         'mypianorollvisualizer6': 'output_note_38.mid',
     };
 
