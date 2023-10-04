@@ -73,11 +73,11 @@ for filename in os.listdir(input_directory):
         for instrument in midi_data.instruments:
             for note in instrument.notes:
                 if note.pitch == 47:
-                    note.pitch = 43
+                    note.pitch = 41
         for instrument in midi_data.instruments:
             for note in instrument.notes:
                 if note.pitch == 50:
-                    note.pitch = 45
+                    note.pitch = 43
 
 
         # Combine D2 and E2 notes in the same list
