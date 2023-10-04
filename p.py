@@ -38,11 +38,11 @@ for filename in os.listdir(input_directory):
         for instrument in midi_data.instruments:
             for note in instrument.notes:
                 if note.pitch == 47:
-                    note.pitch = 43
+                    note.pitch = 45
         for instrument in midi_data.instruments:
             for note in instrument.notes:
                 if note.pitch == 50:
-                    note.pitch = 45
+                    note.pitch = 43
         output_file = 'modified_' + os.path.basename(input_file)
         midi_data.write(output_file)
 
@@ -70,14 +70,8 @@ for filename in os.listdir(input_directory):
                 if note.pitch not in notes_by_pitch:
                     notes_by_pitch[note.pitch] = []
                 notes_by_pitch[note.pitch].append(note)
-        for instrument in midi_data.instruments:
-            for note in instrument.notes:
-                if note.pitch == 47:
-                    note.pitch = 41
-        for instrument in midi_data.instruments:
-            for note in instrument.notes:
-                if note.pitch == 50:
-                    note.pitch = 43
+
+
 
 
         # Combine D2 and E2 notes in the same list
