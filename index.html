@@ -61,7 +61,7 @@
        const options = {
   'Avenida.Dida': ['BaseRitmo', 'Corte3.1', 'Corte3.2', 'Corte4', 'Llamada1','Llamada1.2'],
   'Son.Iniciacion': ['BaseRitmo', 'Corte3', 'Entrada.1', 'Entrada.2'],
-  'Samba.Reggae' : ['BaseRitmo', 'Corte2','Corte3','Corte5','Corte6',]
+  'Samba.Reggae' : ['BaseRitmo', 'Corte2','Corte3','Corte5','Corte6(2+5+3)',]
   
 };
  // Initial sources stored in an object
@@ -175,11 +175,15 @@ function changeSrcPath(newPath, element) {
 
 mp.addEventListener('load', function() {
     let ppts;
-    if (mp.duration > 2.8) {
-        ppts = 200;
-    } else {
-        ppts = 400;
-    }
+    if (mp.duration > 5) { 
+    ppts = 100;
+}
+else if (mp.duration > 2.8) {
+    ppts = 200;
+}
+else {
+    ppts = 400;
+}
     
     mypianorollvisualizer1.config = {
             maxPitch: 80,
