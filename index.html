@@ -177,7 +177,10 @@ function changeSrcPath(newPath, element) {
 
 mp.addEventListener('load', function() {
     let ppts;
-    if (mp.duration > 5) { 
+    if (mp.duration > 10) { 
+    ppts = 50;
+}
+else if (mp.duration > 5) {
     ppts = 100;
 }
 else if (mp.duration > 2.8) {
