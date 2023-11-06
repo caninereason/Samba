@@ -25,7 +25,7 @@
             <option value="Llamada1">Llamada1</option>
             <option value="Llamada1.2">Llamada1.2</option>
         </select>
-        <img id="image" src="Avenida.Dida/BaseRitmo/Avenida.Dida.jpg" style="display: inline-block; margin-left: 400px;">
+        <img id="image" src="Avenida.Dida/BaseRitmo/Avenida.Dida.png" style="display: inline-block; margin-left: 400px;">
     </div>
     
         <section id="section3">
@@ -100,7 +100,7 @@ function updateSrc(event) {
     const select2Value = document.getElementById('secondSelect').value; // corrected to 'secondSelect'
     const newSrc = `${select1Value}/${select2Value}/${select1Value}_${select2Value}.mid`;
     const newText = select1Value + ' ' + select2Value;
-    const imagePath = `${select1Value}/${select2Value}/${select1Value}.jpg`;
+    const imagePath = `${select1Value}/${select2Value}/${select1Value}.png`;
 // Update the text content of the title paragraph
 fetch(imagePath).then(response => {
             if (response.status === 200) {
