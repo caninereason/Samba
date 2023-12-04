@@ -23,16 +23,17 @@
 
     </section>
     <a href="#" class="timestamp" data-time="0">[00:00]</a> Samba Reggae callin ><a
-        href="index.html?select1=Samba.Reggae&select2=Callin(long)" id="myLink">Notation</a>
+        href="index.html?select1=Samba.Reggae&select2=Callin(short)" class="audioControlLink">Notation</a>
     <br>
     <a href="#" class="timestamp" data-time="2">[00:02]</a> Samba Reggae ><a
-        href="index.html?select1=Samba.Reggae&select2=BaseRitmo" id="myLink">Notation</a>
+        href="index.html?select1=Samba.Reggae&select2=BaseRitmo" class="audioControlLink">Notation</a>
     <br>
     <a href="#" class="timestamp" data-time="12">[00:12]</a> Break 2 Samba Reggae><a
-        href="index.html?select1=Samba.Reggae&select2=Corte2" id="myLink">Notation</a><br>
+        href="index.html?select1=Samba.Reggae&select2=Corte2" class="audioControlLink">Notation</a><br>
     <a href="#" class="timestamp" data-time="14">[00:14]</a> Break 3 Samba Reggae><a
-        href="index.html?select1=Samba.Reggae&select2=Corte3" id="myLink">Notation</a><br>
-    <a href="#" class="timestamp" data-time="16">[00:16]</a> Long call in Samba Reggae</a><br>
+        href="index.html?select1=Samba.Reggae&select2=Corte3" class="audioControlLink">Notation</a><br>
+    <a href="#" class="timestamp" data-time="16">[00:16]</a> Long call in Samba Reggae<a
+    href="index.html?select1=Samba.Reggae&select2=Callin(long)" class="audioControlLink">Notation</a><br>
     <a href="#" class="timestamp" data-time="55">[00:55]</a> Samba Reggae</a><br>
     <a href="#" class="timestamp" data-time="64">[01:04]</a> Break 6 Samba Reggae</a><br>
     <a href="#" class="timestamp" data-time="72">[01:12]</a> break 1 Levada</a><br>
@@ -184,18 +185,18 @@
                 });
             });
         });
-        document.addEventListener('DOMContentLoaded', function () {
-            var audioPlayer = document.getElementById('myAudio');
-            var myLink = document.getElementById('myLink');
+        document.addEventListener('DOMContentLoaded', function() {
+    var audioPlayer = document.getElementById('myAudio');
+    var links = document.querySelectorAll('.audioControlLink');
 
-            myLink.addEventListener('click', function (event) {
-                event.preventDefault();
-                audioPlayer.pause();  // Pause the audio playback
-                window.open(myLink.href, '_blank');  // Open the new page in a new tab/window
-                
-                
-            });
+    links.forEach(function(link) {
+        link.addEventListener('click', function(event) {
+            event.preventDefault();
+            audioPlayer.pause();  // Pause the audio playback
+            window.open(link.href, '_blank');  // Open the link's href in a new tab/window
         });
+    });
+});
     </script>
 </body>
 

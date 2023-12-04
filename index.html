@@ -62,7 +62,7 @@
        const options = {
   'Avenida.Dida': ['BaseRitmo', 'Corte3', 'Corte4', 'Llamada1','Llamada1.2','SilenceDobras'],
   'Son': ['BaseRitmo', 'Corte3', 'Entrada.1', 'Entrada.2'],
-  'Samba.Reggae' : ['BaseRitmo','Callin(long)', 'Corte2','Corte3','Corte5','Corte6(2+5+3)',],
+  'Samba.Reggae' : ['BaseRitmo','Callin(short)','Callin(long)', 'Corte2','Corte3','Corte5','Corte6(2+5+3)',],
   'Funky' : ['BaseRitmo','Corte4(Callin)'],
   'Levada' : ['BaseRitmo', 'Corte1', 'Corte2', 'Corte3', 'Corte4','Corte6(Macaco)'],
   
@@ -96,7 +96,7 @@
 
             if (select1Value) {
                 document.getElementById('firstSelect').value = select1Value;
-            }
+            
             const firstSelectValue = document.getElementById('firstSelect').value;
             
     // Get the options for the selected value
@@ -115,12 +115,13 @@
         optionElement.text = option;
         secondSelect.add(optionElement);
     })
+}
             if (select2Value) {
                 document.getElementById('secondSelect').value = select2Value;
-            }
+            
             let newSrc = `${select1Value}/${select2Value}/${select1Value}_${select2Value}.mid`;
     let newText = select1Value + ' ' + select2Value;
-    let imagePath = `${select1Value}/${select2Value}/${select1Value}.png`;
+    let imagePath = `${select1Value}/BaseRitmo/${select1Value}.png`;
 // Update the text content of the title paragraph
 fetch(imagePath).then(response => {
             if (response.status === 200) {
@@ -143,7 +144,7 @@ const midiPlayers = document.querySelectorAll('midi-player');
   const midiVisualizers = document.querySelectorAll('midi-visualizer');
             
            
-            
+    }    
         });
 
 
