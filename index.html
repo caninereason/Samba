@@ -14,16 +14,19 @@
             <option value="Son">Son</option>
             <option value="Samba.Reggae">Samba.Reggae</option>
             <option value="Funky">Funky</option>
+            <option value="Levada">Levada</option>
+            <!-- <option value="Gig1">Gig1</option> -->
 
             
         </select>
         <select id="secondSelect" onchange="updateSrc(event)">
             <option value="BaseRitmo">BaseRitmo</option>
-            <option value="Corte3.1">Corte3.1</option>
-            <option value="Corte3.2">Corte3.2</option>
+            <option value="Corte3">Corte3</option>
             <option value="Corte4">Corte4</option>
             <option value="Llamada1">Llamada1</option>
             <option value="Llamada1.2">Llamada1.2</option>
+            <option value= 'SilenceDobras'>SilenceDobras</option>
+           
         </select>
         <img id="image" src="Avenida.Dida/BaseRitmo/Avenida.Dida.png" style="display: inline-block; margin-left: 400px;">
     </div>
@@ -51,19 +54,17 @@
     <!-- Other code remains unchanged -->
     
     <script>
-         window.onload = function() {
-        document.getElementById('firstSelect').selectedIndex = 0;
-        updateSrc();
-    }
+         let not = false;
         const mp = document.querySelector('midi-player');
        console.log(mp.duration);
        
         
        const options = {
-  'Avenida.Dida': ['BaseRitmo', 'Corte3.1', 'Corte3.2', 'Corte4', 'Llamada1','Llamada1.2'],
+  'Avenida.Dida': ['BaseRitmo', 'Corte3', 'Corte4', 'Llamada1','Llamada1.2','SilenceDobras'],
   'Son': ['BaseRitmo', 'Corte3', 'Entrada.1', 'Entrada.2'],
   'Samba.Reggae' : ['BaseRitmo','Callin(long)', 'Corte2','Corte3','Corte5','Corte6(2+5+3)',],
-  'Funky' : ['BaseRitmo'],
+  'Funky' : ['BaseRitmo','Corte4(Callin)'],
+  'Levada' : ['BaseRitmo', 'Corte1', 'Corte2', 'Corte3', 'Corte4','Corte6(Macaco)'],
   
 };
  // Initial sources stored in an object
@@ -83,7 +84,68 @@
         }
     }
 
-   
+    function getQueryParam(param) {
+            var searchParams = new URLSearchParams(window.location.search);
+            return searchParams.get(param);
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            let select1Value = getQueryParam('select1');
+            let select2Value = getQueryParam('select2');
+
+            if (select1Value) {
+                document.getElementById('firstSelect').value = select1Value;
+            }
+            const firstSelectValue = document.getElementById('firstSelect').value;
+            
+    // Get the options for the selected value
+    const secondSelectOptions = options[firstSelectValue] || [];
+            
+    // Get the second select element
+    const secondSelect = document.getElementById('secondSelect');
+
+    // Clear all existing options
+    secondSelect.innerHTML = '';
+            
+    // Add new options
+    secondSelectOptions.forEach(option => {
+        const optionElement = document.createElement('option');
+        optionElement.value = option;
+        optionElement.text = option;
+        secondSelect.add(optionElement);
+    })
+            if (select2Value) {
+                document.getElementById('secondSelect').value = select2Value;
+            }
+            let newSrc = `${select1Value}/${select2Value}/${select1Value}_${select2Value}.mid`;
+    let newText = select1Value + ' ' + select2Value;
+    let imagePath = `${select1Value}/${select2Value}/${select1Value}.png`;
+// Update the text content of the title paragraph
+fetch(imagePath).then(response => {
+            if (response.status === 200) {
+                // If the image exists, set the src attribute of the existing img tag
+                const img = document.getElementById('image');
+                img.src = imagePath;
+                img.style.display = 'block'; // make the image visible
+            }
+        });
+document.getElementById('title').innerText = newText.replace(/\./g, ' ');
+
+
+  // Construct the new path
+  const newPath =`${select1Value}/${select2Value}`;
+    document.getElementById('midiPlayer1').setAttribute('src', newSrc);
+    document.getElementById('mypianorollvisualizer1').setAttribute('src', newSrc);
+    document.getElementById('firstSelect').addEventListener('change', updateSrc);
+document.getElementById('secondSelect').addEventListener('change', updateSrc);
+const midiPlayers = document.querySelectorAll('midi-player');
+  const midiVisualizers = document.querySelectorAll('midi-visualizer');
+            
+           
+            
+        });
+
 
     
 
@@ -95,12 +157,12 @@
 function updateSrc(event) {
 
     
-    const changedElementId = event.target.id;
-    const select1Value = document.getElementById('firstSelect').value; // corrected to 'firstSelect'
-    const select2Value = document.getElementById('secondSelect').value; // corrected to 'secondSelect'
-    const newSrc = `${select1Value}/${select2Value}/${select1Value}_${select2Value}.mid`;
-    const newText = select1Value + ' ' + select2Value;
-    const imagePath = `${select1Value}/${select2Value}/${select1Value}.png`;
+    let changedElementId = event.target.id;
+    let select1Value = document.getElementById('firstSelect').value; // corrected to 'firstSelect'
+    let select2Value = document.getElementById('secondSelect').value; // corrected to 'secondSelect'
+    let newSrc = `${select1Value}/${select2Value}/${select1Value}_${select2Value}.mid`;
+    let newText = select1Value + ' ' + select2Value;
+    let imagePath = `${select1Value}/${select2Value}/${select1Value}.png`;
 // Update the text content of the title paragraph
 fetch(imagePath).then(response => {
             if (response.status === 200) {
@@ -123,7 +185,7 @@ const midiPlayers = document.querySelectorAll('midi-player');
   const midiVisualizers = document.querySelectorAll('midi-visualizer');
   mp.addEventListener('play', function() {
     updateSrc();})
-  resetSrc();
+ 
   // Update the src attribute for all midi-player and midi-visualizer elements
   midiPlayers.forEach(player => {
       changeSrcPath(newPath, player);
@@ -156,7 +218,10 @@ const midiPlayers = document.querySelectorAll('midi-player');
     })
 
     // Set the selected index to 0
-    secondSelect.selectedIndex = 0;
+    if (!not){
+        secondSelect.selectedIndex=0;
+    }
+    
 }
 }
 
@@ -235,7 +300,6 @@ else {
         };
         
 });
-
 
        
 

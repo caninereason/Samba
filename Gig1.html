@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Samba Player</title>
+    <script
+        src="https://cdn.jsdelivr.net/combine/npm/tone@14.7.58,npm/@magenta/music@1.23.1/es6/core.js,npm/focus-visible@5,npm/html-midi-player@1.5.0"></script>
+    <link rel="stylesheet" href="mystyle.css">
+    <!-- Add CSS and JavaScript references -->
+</head>
+
+<body>
+
+    <section id="section3">
+
+        <audio id="myAudio" controls>
+            <source src="GIG1.wav" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+        <div id="bookmarkDisplay"></div>
+
+
+    </section>
+    <a href="#" class="timestamp" data-time="0">[00:00]</a> Samba Reggae callin ><a
+        href="index.html?select1=Samba.Reggae&select2=Callin(long)" id="myLink">Notation</a>
+    <br>
+    <a href="#" class="timestamp" data-time="2">[00:02]</a> Samba Reggae ><a
+        href="index.html?select1=Samba.Reggae&select2=BaseRitmo" id="myLink">Notation</a>
+    <br>
+    <a href="#" class="timestamp" data-time="12">[00:12]</a> Break 2 Samba Reggae><a
+        href="index.html?select1=Samba.Reggae&select2=Corte2" id="myLink">Notation</a><br>
+    <a href="#" class="timestamp" data-time="14">[00:14]</a> Break 3 Samba Reggae><a
+        href="index.html?select1=Samba.Reggae&select2=Corte3" id="myLink">Notation</a><br>
+    <a href="#" class="timestamp" data-time="16">[00:16]</a> Long call in Samba Reggae</a><br>
+    <a href="#" class="timestamp" data-time="55">[00:55]</a> Samba Reggae</a><br>
+    <a href="#" class="timestamp" data-time="64">[01:04]</a> Break 6 Samba Reggae</a><br>
+    <a href="#" class="timestamp" data-time="72">[01:12]</a> break 1 Levada</a><br>
+    <a href="#" class="timestamp" data-time="74">[01:14]</a> Levada</a><br>
+    <a href="#" class="timestamp" data-time="84">[01:24]</a> Break 2 Levada</a><br>
+    <a href="#" class="timestamp" data-time="86">[01:26]</a> Break 3 Levada</a><br>
+    <a href="#" class="timestamp" data-time="91">[01:31]</a> Break 4 Levada</a><br>
+    <a href="#" class="timestamp" data-time="100">[01:40] Call in Avenida</a><br>
+    <a href="#" class="timestamp" data-time="120">[02:00] Avenida</a><br>
+    <a href="#" class="timestamp" data-time="127">[02:07] Break 4 Avenida</a><br>
+    <a href="#" class="timestamp" data-time="129">[02:09] 1Break silence drobras</a><br>
+    <a href="#" class="timestamp" data-time="136">[02:16] Avendida</a><br>
+    <a href="#" class="timestamp" data-time="144">[02:24] Break silence drobras</a><br>
+    <a href="#" class="timestamp" data-time="158">[02:38] Break 1 Levada</a><br>
+    <a href="#" class="timestamp" data-time="160">[02:40] Levada</a><br>
+    <a href="#" class="timestamp" data-time="170">[02:50] Break 6 Levada</a><br>
+    <a href="#" class="timestamp" data-time="178">[02:58] Speed up Levada</a><br>
+    <a href="#" class="timestamp" data-time="204">[03:24] Final Break 1,2,3</a><br>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var audioPlayer = document.getElementById('myAudio');
+            var bookmarkDisplay = document.getElementById('bookmarkDisplay');
+
+            var bookmarks = [
+                {
+                    "time": 0,
+                    "message": "Short call in Samba Reggae "
+                },
+                {
+                    "time": 2,
+                    "message": "Samba Reggae "
+                },
+                {
+                    "time": 12,
+                    "message": "Break 2 Samba Reggae"
+                },
+                {
+                    "time": 14,
+                    "message": "Break 3 Samba Reggae"
+                },
+                {
+                    "time": 16,
+                    "message": "Long call in Samba Reggae"
+                },
+                {
+                    "time": 55,
+                    "message": "Samba Reggae"
+                },
+                {
+                    "time": 64,
+                    "message": "Break 6 Samba Reggae"
+                },
+                {
+                    "time": 72,
+                    "message": "break 1 Levada"
+                },
+                {
+                    "time": 74,
+                    "message": "Levada"
+                },
+                {
+                    "time": 84,
+                    "message": "Break 2 Levada"
+                },
+                {
+                    "time": 86,
+                    "message": "Break 3 Levada"
+                },
+                {
+                    "time": 91,
+                    "message": "Break 4 Levada"
+                },
+                {
+                    "time": 100,
+                    "message": "Call in Avenida"
+                },
+                {
+                    "time": 120,
+                    "message": "Avenida"
+                },
+                {
+                    "time": 127,
+                    "message": "Break 4 Avenida"
+                },
+                {
+                    "time": 129,
+                    "message": "1Break silence drobras"
+                },
+                {
+                    "time": 136,
+                    "message": "Avendida"
+                },
+                {
+                    "time": 144,
+                    "message": "Break silence drobras"
+                },
+                {
+                    "time": 158,
+                    "message": "Break 1 Levada"
+                },
+                {
+                    "time": 160,
+                    "message": "Levada"
+                },
+                {
+                    "time": 170,
+                    "message": "Break 6 Levada"
+                },
+                {
+                    "time": 178,
+                    "message": "Speed up Levada"
+                },
+                {
+                    "time": 204,
+                    "message": "Final Break 1,2,3"
+                }
+            ];
+
+            audioPlayer.addEventListener('timeupdate', function () {
+                var currentTime = Math.floor(audioPlayer.currentTime);
+                bookmarks.forEach(function (bookmark) {
+                    if (currentTime === bookmark.time) {
+                        bookmarkDisplay.innerText = bookmark.message;
+                    }
+                });
+            });
+        });
+        document.addEventListener('DOMContentLoaded', function () {
+            var selectElement = document.getElementById('mySelect');
+            var displayElement = document.getElementById('selectedValue');
+
+            selectElement.addEventListener('change', function () {
+                var selectedValue = selectElement.value;
+                displayElement.textContent = 'You selected: ' + selectedValue;
+            });
+        });
+        document.addEventListener('DOMContentLoaded', function () {
+            var audioPlayer = document.getElementById('myAudio');
+            var timestamps = document.querySelectorAll('.timestamp');
+
+            timestamps.forEach(function (link) {
+                link.addEventListener('click', function (e) {
+                    e.preventDefault();  // Prevent default anchor behavior
+                    var time = link.getAttribute('data-time');
+                    audioPlayer.currentTime = time;  // Set the time of the audio
+                    audioPlayer.play();  // Start playing
+                });
+            });
+        });
+        document.addEventListener('DOMContentLoaded', function () {
+            var audioPlayer = document.getElementById('myAudio');
+            var myLink = document.getElementById('myLink');
+
+            myLink.addEventListener('click', function (event) {
+                event.preventDefault();
+                audioPlayer.pause();  // Pause the audio playback
+                window.open(myLink.href, '_blank');  // Open the new page in a new tab/window
+                
+                
+            });
+        });
+    </script>
+</body>
+
+</html>
