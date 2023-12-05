@@ -54,6 +54,8 @@
     <!-- Other code remains unchanged -->
     
     <script>
+       
+
          let not = false;
         const mp = document.querySelector('midi-player');
        console.log(mp.duration);
@@ -84,68 +86,7 @@
         }
     }
 
-    function getQueryParam(param) {
-            var searchParams = new URLSearchParams(window.location.search);
-            return searchParams.get(param);
-        }
-
-        document.addEventListener('DOMContentLoaded', function() {
-            
-            let select1Value = getQueryParam('select1');
-            let select2Value = getQueryParam('select2');
-
-            if (select1Value) {
-                document.getElementById('firstSelect').value = select1Value;
-            
-            const firstSelectValue = document.getElementById('firstSelect').value;
-            
-    // Get the options for the selected value
-    const secondSelectOptions = options[firstSelectValue] || [];
-            
-    // Get the second select element
-    const secondSelect = document.getElementById('secondSelect');
-
-    // Clear all existing options
-    secondSelect.innerHTML = '';
-            
-    // Add new options
-    secondSelectOptions.forEach(option => {
-        const optionElement = document.createElement('option');
-        optionElement.value = option;
-        optionElement.text = option;
-        secondSelect.add(optionElement);
-    })
-}
-            if (select2Value) {
-                document.getElementById('secondSelect').value = select2Value;
-            
-            let newSrc = `${select1Value}/${select2Value}/${select1Value}_${select2Value}.mid`;
-    let newText = select1Value + ' ' + select2Value;
-    let imagePath = `${select1Value}/BaseRitmo/${select1Value}.png`;
-// Update the text content of the title paragraph
-fetch(imagePath).then(response => {
-            if (response.status === 200) {
-                // If the image exists, set the src attribute of the existing img tag
-                const img = document.getElementById('image');
-                img.src = imagePath;
-                img.style.display = 'block'; // make the image visible
-            }
-        });
-document.getElementById('title').innerText = newText.replace(/\./g, ' ');
-
-
-  // Construct the new path
-  const newPath =`${select1Value}/${select2Value}`;
-    document.getElementById('midiPlayer1').setAttribute('src', newSrc);
-    document.getElementById('mypianorollvisualizer1').setAttribute('src', newSrc);
-    document.getElementById('firstSelect').addEventListener('change', updateSrc);
-document.getElementById('secondSelect').addEventListener('change', updateSrc);
-const midiPlayers = document.querySelectorAll('midi-player');
-  const midiVisualizers = document.querySelectorAll('midi-visualizer');
-            
-           
-    }    
-        });
+    
 
 
     
@@ -157,7 +98,8 @@ const midiPlayers = document.querySelectorAll('midi-player');
 // This function is for changing the src for a specific midi player and visualizer by ID
 function updateSrc(event) {
 
-    
+    removeQueryString();
+    resetSrc()
     let changedElementId = event.target.id;
     let select1Value = document.getElementById('firstSelect').value; // corrected to 'firstSelect'
     let select2Value = document.getElementById('secondSelect').value; // corrected to 'secondSelect'
@@ -241,6 +183,107 @@ function changeSrcPath(newPath, element) {
 
 
 
+
+
+function getQueryParam(param) {
+            var searchParams = new URLSearchParams(window.location.search);
+            return searchParams.get(param);
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            let select1Value = getQueryParam('select1');
+            let select2Value = getQueryParam('select2');
+
+            if (select1Value) {
+                document.getElementById('firstSelect').value = select1Value;
+            
+            const firstSelectValue = document.getElementById('firstSelect').value;
+            
+    // Get the options for the selected value
+    const secondSelectOptions = options[firstSelectValue] || [];
+            
+    // Get the second select element
+    const secondSelect = document.getElementById('secondSelect');
+
+    // Clear all existing options
+    secondSelect.innerHTML = '';
+            
+    // Add new options
+    secondSelectOptions.forEach(option => {
+        const optionElement = document.createElement('option');
+        optionElement.value = option;
+        optionElement.text = option;
+        secondSelect.add(optionElement);
+    })
+}
+            if (select2Value) {
+                document.getElementById('secondSelect').value = select2Value;
+            
+            let newSrc = `${select1Value}/${select2Value}/${select1Value}_${select2Value}.mid`;
+    let newText = select1Value + ' ' + select2Value;
+    let imagePath = `${select1Value}/BaseRitmo/${select1Value}.png`;
+// Update the text content of the title paragraph
+fetch(imagePath).then(response => {
+            if (response.status === 200) {
+                // If the image exists, set the src attribute of the existing img tag
+                const img = document.getElementById('image');
+                img.src = imagePath;
+                img.style.display = 'block'; // make the image visible
+            }
+        });
+document.getElementById('title').innerText = newText.replace(/\./g, ' ');
+
+
+  // Construct the new path
+  const newPath =`${select1Value}/${select2Value}`;
+    document.getElementById('midiPlayer1').setAttribute('src', newSrc);
+    document.getElementById('mypianorollvisualizer1').setAttribute('src', newSrc);
+    document.getElementById('firstSelect').addEventListener('change', updateSrc);
+document.getElementById('secondSelect').addEventListener('change', updateSrc);
+const midiPlayers = document.querySelectorAll('midi-player');
+  const midiVisualizers = document.querySelectorAll('midi-visualizer');
+            // Update the src attribute for all midi-player and midi-visualizer elements
+  midiPlayers.forEach(player => {
+      changeSrcPath(newPath, player);
+      console.log(player);
+  });
+
+  midiVisualizers.forEach(visualizer => {
+      changeSrcPath(newPath, visualizer);
+      console.log(visualizer);
+  });
+  
+    }    
+        });
+
+        function removeQueryString() {
+    var url = window.location.href;
+    var urlWithoutQuery = url.split('?')[0]; // Split the URL at '?' and take the first part
+
+    // Update the URL without reloading the page
+    window.history.pushState({}, document.title, urlWithoutQuery);
+}
+
+window.onload = function() {
+    // Function to get the value of a specific query parameter
+    function getQueryParam(param) {
+        var searchParams = new URLSearchParams(window.location.search);
+        return searchParams.get(param);
+    }
+
+    // Get the values of 'select1' and 'select2' from the current URL
+    var select1Value = getQueryParam('select1');
+    var select2Value = getQueryParam('select2');
+
+    // Define the default query string if 'select1' or 'select2' are not present
+    if (select1Value === null || select2Value === null) {
+        var desiredQueryString = "?select1=Avenida.Dida&select2=BaseRitmo";
+
+        // Redirect to the same page with the desired query string
+        window.location.href = window.location.origin + window.location.pathname + desiredQueryString;
+    }
+};
 mp.addEventListener('load', function() {
     let ppts;
     if (mp.duration > 10) { 
@@ -301,10 +344,6 @@ else {
         };
         
 });
-
-       
-
-       
 
     </script>
 </body>
