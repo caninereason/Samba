@@ -240,7 +240,7 @@ document.addEventListener('DOMContentLoaded', function () {
             var linkTime = parseInt(link.getAttribute('data-time'));
             if (linkTime === currentTime) {
                 timestamps.forEach(function (link) {
-            link.style.color = ''; // Remove any special styling
+            link.style.color = 'black'; // Remove any special styling
         });
                 link.style.color = 'red'; // Highlight the current link
             }
